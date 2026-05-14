@@ -3,8 +3,8 @@ const Appointment = require('../models/Appointment');
 const { sendWhatsApp, sendEmail } = require('./notificationService');
 const { format } = require('date-fns');
 
-// Runs at 16:00 every day
-cron.schedule('0 16 * * *', async () => {
+// Runs at 16:30 every day
+cron.schedule('30 16 * * *', async () => {
   const today = format(new Date(), 'yyyy-MM-dd');
 
   const appointments = await Appointment.find({ date: today, status: 'confirmed' })

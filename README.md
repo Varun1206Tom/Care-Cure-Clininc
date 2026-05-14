@@ -140,7 +140,7 @@ Bookings are **only accepted between 8:00 AM and 4:00 PM** (IST). This is enforc
 1. **Frontend** — the UI disables the booking form and shows a friendly closed banner outside hours
 2. **Backend** — `timeWindowMiddleware` returns a `403` for any POST request outside the window
 
-At exactly **4:00 PM**, a `node-cron` job fires, collects all confirmed appointments for the day, and sends the full report to the doctor via WhatsApp (with email as automatic fallback).
+At exactly **4:30 PM**, a `node-cron` job fires, collects all confirmed appointments for the day, and sends the full report to the doctor via WhatsApp (with email as automatic fallback).
 
 ---
 
@@ -168,7 +168,7 @@ The doctor can access `/admin` to:
 | Frontend | [Vercel](https://vercel.com) or [Netlify](https://netlify.com) |
 | Database | [MongoDB Atlas](https://cloud.mongodb.com) |
 
-Ensure your hosting platform's timezone is set to `Asia/Kolkata` for the 4 PM cron job to fire correctly.
+Ensure your hosting platform's timezone is set to `Asia/Kolkata` for the 4:30 PM cron job to fire correctly.
 
 ---
 
