@@ -1,0 +1,17 @@
+.app-main {
+  min-height: calc(100vh - 56px);
+  background: linear-gradient(180deg, rgba(13, 110, 253, 0.08), rgba(248, 249, 250, 0.95));
+}
+
+.hero-card {
+  min-height: 260px;
+}
+
+.app-main h1 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.app-main .lead {
+  color: #495057;
+}
