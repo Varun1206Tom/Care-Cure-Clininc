@@ -1,0 +1,196 @@
+// ============================================
+// CARE & CURE CLINIC - Global Styles
+// ============================================
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: $font-body;
+    font-size: 16px;
+    line-height: 1.6;
+    color: $neutral-800;
+    background: $neutral-50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: $neutral-100;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $primary-300;
+    border-radius: $radius-full;
+
+    &:hover {
+        background: $primary-500;
+    }
+}
+
+// Selection
+::selection {
+    background: $primary-100;
+    color: $primary-800;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-display;
+    line-height: 1.2;
+    color: $neutral-900;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+p {
+    color: $neutral-600;
+    line-height: 1.8;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// Utility Classes
+.container {
+    @include container;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+// Button Styles
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-sm;
+    padding: $space-md $space-xl;
+    border: none;
+    border-radius: $radius-lg;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-base;
+    text-decoration: none;
+
+    &-primary {
+        @extend .btn;
+        @include gradient-primary;
+        color: white;
+        box-shadow: 0 4px 12px rgba($primary, 0.3);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba($primary, 0.4);
+            color: white;
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &-outline {
+        @extend .btn;
+        background: transparent;
+        color: $primary;
+        border: 2px solid $primary-200;
+
+        &:hover {
+            background: $primary-50;
+            border-color: $primary;
+            transform: translateY(-2px);
+        }
+    }
+
+    &-lg {
+        padding: $space-md $space-2xl;
+        font-size: 1.1rem;
+
+        @include respond(mobile) {
+            padding: $space-md $space-xl;
+            font-size: 1rem;
+        }
+    }
+}
+
+// Section Styles
+.section {
+    &-badge {
+        @include badge;
+    }
+
+    &-header {
+        @include section-header;
+    }
+
+    &-title {
+        margin-bottom: $space-md;
+
+        .text-primary {
+            @include gradient-text;
+        }
+    }
+
+    &-description {
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+        color: $neutral-500;
+    }
+}

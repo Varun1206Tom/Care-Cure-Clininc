@@ -1,0 +1,116 @@
+// ============================================
+// CARE & CURE CLINIC - Mixins
+// ============================================
+
+@mixin respond($breakpoint) {
+    @if $breakpoint ==mobile {
+        @media (max-width: $mobile) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==tablet {
+        @media (max-width: $tablet) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==laptop {
+        @media (max-width: $laptop) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==desktop {
+        @media (max-width: $desktop) {
+            @content;
+        }
+    }
+}
+
+@mixin container {
+    width: 100%;
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 $space-xl;
+
+    @include respond(tablet) {
+        padding: 0 $space-lg;
+    }
+
+    @include respond(mobile) {
+        padding: 0 $space-md;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+@mixin gradient-primary {
+    background: linear-gradient(135deg, $primary, $primary-dark);
+}
+
+@mixin gradient-text {
+    @include gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@mixin card-hover {
+    transition: all $transition-base;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-xl;
+    }
+}
+
+@mixin section-padding {
+    padding: $space-4xl 0;
+
+    @include respond(tablet) {
+        padding: $space-3xl 0;
+    }
+
+    @include respond(mobile) {
+        padding: $space-2xl 0;
+    }
+}
+
+@mixin section-header {
+    text-align: center;
+    margin-bottom: $space-3xl;
+
+    @include respond(mobile) {
+        margin-bottom: $space-2xl;
+    }
+}
+
+@mixin badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-sm;
+    padding: $space-xs $space-md;
+    background: $primary-50;
+    color: $primary;
+    border-radius: $radius-full;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: $space-md;
+}

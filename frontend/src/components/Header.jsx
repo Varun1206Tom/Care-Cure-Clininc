@@ -278,7 +278,7 @@ const Header = () => {
               transition={{ delay: 0.5 }}
             >
               <span className="cc-pulse" />
-              Open Today 8AM – 4PM
+              Open Today 4PM – 10PM
             </motion.div>
 
             {/* Book CTA */}

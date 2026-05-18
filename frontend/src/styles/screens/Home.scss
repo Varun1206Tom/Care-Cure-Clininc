@@ -1,0 +1,736 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+// ============================================
+// HOME PAGE
+// ============================================
+
+.home-page {
+    // padding-top: $header-height;
+    padding-top: 0px;
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+
+.hero-section {
+    position: relative;
+    min-height: calc(100vh - #{$header-height});
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, $primary-50 0%, $neutral-50 100%);
+
+    .hero-background {
+        position: absolute;
+        inset: 0;
+
+        .hero-gradient {
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba($primary, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image:
+                radial-gradient(circle, $primary 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: $space-3xl 0;
+    }
+
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $space-3xl;
+        align-items: center;
+
+        @include respond(tablet) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    .hero-text {
+        .hero-badge {
+            @include badge;
+            margin-bottom: $space-lg;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: $space-lg;
+            line-height: 1.1;
+
+            .text-primary {
+                @include gradient-text;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: $neutral-600;
+            margin-bottom: $space-xl;
+            max-width: 540px;
+
+            @include respond(tablet) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: $space-md;
+            margin-bottom: $space-2xl;
+
+            @include respond(tablet) {
+                justify-content: center;
+            }
+
+            @include respond(mobile) {
+                flex-direction: column;
+            }
+
+            .btn {
+                @include respond(mobile) {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $space-lg;
+            max-width: 480px;
+
+            @include respond(tablet) {
+                margin: 0 auto;
+            }
+
+            .stat-item {
+                display: flex;
+                flex-direction: column;
+                gap: $space-xs;
+                padding: $space-md;
+                background: white;
+                border-radius: $radius-xl;
+                border: 1px solid $neutral-200;
+
+                .stat-icon {
+                    color: $primary;
+                    margin-bottom: $space-xs;
+                }
+
+                .stat-value {
+                    font-family: $font-display;
+                    font-size: 1.75rem;
+                    font-weight: 700;
+                    color: $neutral-900;
+                }
+
+                .stat-label {
+                    font-size: 0.813rem;
+                    color: $neutral-500;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .hero-image-wrapper {
+        @include respond(tablet) {
+            display: none;
+        }
+
+        .hero-image-card {
+            background: white;
+            border-radius: $radius-2xl;
+            padding: $space-xl;
+            box-shadow: $shadow-2xl;
+            position: relative;
+
+            .hero-image-placeholder {
+                width: 100%;
+                aspect-ratio: 4/3;
+                @include gradient-primary;
+                border-radius: $radius-xl;
+                @include flex-center;
+                color: white;
+                margin-bottom: $space-lg;
+            }
+
+            .hero-image-info {
+                display: flex;
+                flex-direction: column;
+                gap: $space-md;
+
+                .info-item {
+                    display: flex;
+                    gap: $space-md;
+                    padding: $space-md;
+                    background: $neutral-50;
+                    border-radius: $radius-lg;
+
+                    svg {
+                        color: $primary;
+                        flex-shrink: 0;
+                    }
+
+                    strong {
+                        display: block;
+                        font-size: 0.938rem;
+                        color: $neutral-800;
+                        margin-bottom: $space-xs;
+                    }
+
+                    p {
+                        font-size: 0.813rem;
+                        color: $neutral-500;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// SERVICES SECTION
+// ============================================
+
+.services-section {
+    @include section-padding;
+    background: white;
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: $space-xl;
+
+        @include respond(mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .service-card {
+        background: white;
+        border: 1px solid $neutral-200;
+        border-radius: $radius-2xl;
+        padding: $space-2xl;
+        @include card-hover;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            @include gradient-primary;
+            transform: scaleX(0);
+            transition: transform $transition-base;
+        }
+
+        &:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: $primary-50;
+            border-radius: $radius-xl;
+            @include flex-center;
+            color: $primary;
+            margin-bottom: $space-lg;
+            transition: all $transition-base;
+        }
+
+        &:hover .service-icon {
+            @include gradient-primary;
+            color: white;
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .service-title {
+            font-size: 1.375rem;
+            margin-bottom: $space-md;
+        }
+
+        .service-description {
+            color: $neutral-600;
+            margin-bottom: $space-lg;
+            font-size: 0.938rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: $space-sm;
+                padding: $space-sm 0;
+                color: $neutral-700;
+                font-size: 0.875rem;
+
+                svg {
+                    color: $primary;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// DOCTORS SECTION
+// ============================================
+
+.doctors-section {
+    @include section-padding;
+    background: $neutral-50;
+
+    .doctors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: $space-2xl;
+
+        @include respond(laptop) {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    }
+
+    .doctor-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: $space-2xl;
+        background: white;
+        border-radius: $radius-2xl;
+        padding: $space-2xl;
+        box-shadow: $shadow-lg;
+        transition: all $transition-base;
+
+        @include respond(mobile) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: $shadow-2xl;
+        }
+
+        .doctor-image {
+            width: 200px;
+            height: 200px;
+            border-radius: $radius-2xl;
+            overflow: hidden;
+            border: 4px solid $primary-100;
+
+            @include respond(mobile) {
+                margin: 0 auto;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+            }
+        }
+
+        .doctor-info {
+            h3 {
+                font-size: 1.75rem;
+                margin-bottom: $space-xs;
+            }
+
+            .doctor-degree {
+                display: inline-block;
+                padding: $space-xs $space-md;
+                background: $primary-50;
+                color: $primary;
+                border-radius: $radius-full;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: $space-md;
+            }
+
+            .doctor-specialty {
+                font-size: 1.125rem;
+                color: $primary-dark;
+                font-weight: 600;
+                margin-bottom: $space-md;
+            }
+
+            .doctor-bio {
+                color: $neutral-600;
+                margin-bottom: $space-lg;
+                font-size: 0.938rem;
+            }
+
+            .doctor-expertise {
+                h4 {
+                    font-size: 0.938rem;
+                    color: $neutral-700;
+                    margin-bottom: $space-md;
+                    font-family: $font-body;
+                }
+
+                .expertise-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: $space-sm;
+
+                    span {
+                        padding: $space-xs $space-md;
+                        background: $neutral-100;
+                        border: 1px solid $neutral-200;
+                        border-radius: $radius-full;
+                        font-size: 0.813rem;
+                        color: $neutral-600;
+                        transition: all $transition-fast;
+
+                        &:hover {
+                            background: $primary-50;
+                            border-color: $primary-200;
+                            color: $primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// TESTIMONIALS SECTION
+// ============================================
+
+.testimonials-section {
+    @include section-padding;
+    background: white;
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: $space-xl;
+    }
+
+    .testimonial-card {
+        background: $neutral-50;
+        border-radius: $radius-2xl;
+        padding: $space-2xl;
+        @include card-hover;
+
+        .testimonial-stars {
+            display: flex;
+            gap: $space-xs;
+            margin-bottom: $space-md;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: $neutral-700;
+            font-style: italic;
+            margin-bottom: $space-lg;
+            position: relative;
+
+            &::before {
+                content: '\201C';
+                font-family: $font-display;
+                font-size: 4rem;
+                color: $primary-200;
+                position: absolute;
+                top: -1.5rem;
+                left: -0.5rem;
+                line-height: 1;
+            }
+        }
+
+        .testimonial-author {
+            border-top: 1px solid $neutral-200;
+            padding-top: $space-md;
+
+            strong {
+                display: block;
+                color: $neutral-800;
+                margin-bottom: $space-xs;
+            }
+
+            span {
+                font-size: 0.813rem;
+                color: $neutral-500;
+            }
+        }
+    }
+}
+
+// ============================================
+// CONTACT SECTION
+// ============================================
+
+.contact-section {
+    @include section-padding;
+    background: $neutral-50;
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $space-3xl;
+
+        @include respond(laptop) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .contact-info {
+        .contact-cards {
+            display: grid;
+            gap: $space-md;
+            margin-top: $space-xl;
+        }
+
+        .contact-card {
+            display: flex;
+            gap: $space-md;
+            padding: $space-lg;
+            background: white;
+            border-radius: $radius-xl;
+            border: 1px solid $neutral-200;
+            @include card-hover;
+
+            .contact-icon {
+                width: 48px;
+                height: 48px;
+                @include gradient-primary;
+                border-radius: $radius-lg;
+                @include flex-center;
+                color: white;
+                flex-shrink: 0;
+            }
+
+            .contact-details {
+                h4 {
+                    font-family: $font-body;
+                    font-size: 0.875rem;
+                    color: $neutral-500;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    margin-bottom: $space-xs;
+                }
+
+                p,
+                a {
+                    color: $neutral-800;
+                    font-weight: 500;
+                }
+
+                .sunday-badge {
+                    display: inline-block;
+                    padding: $space-xs $space-md;
+                    background: $accent-success;
+                    color: white;
+                    border-radius: $radius-full;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    margin-bottom: $space-sm;
+                }
+            }
+        }
+    }
+
+    .contact-form-wrapper {
+        background: white;
+        border-radius: $radius-2xl;
+        padding: $space-2xl;
+        box-shadow: $shadow-xl;
+
+        .form-group {
+            margin-bottom: $space-md;
+
+            label {
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: $neutral-700;
+                margin-bottom: $space-xs;
+            }
+
+            input,
+            textarea,
+            select {
+                width: 100%;
+                padding: $space-md;
+                border: 1px solid $neutral-300;
+                border-radius: $radius-lg;
+                font-size: 1rem;
+                font-family: $font-body;
+                transition: all $transition-fast;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primary;
+                    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+                }
+
+                &::placeholder {
+                    color: $neutral-400;
+                }
+            }
+
+            textarea {
+                resize: vertical;
+                min-height: 120px;
+            }
+        }
+
+        .btn-submit {
+            @extend .btn-primary;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+// ============================================
+// CTA SECTION
+// ============================================
+
+.cta-section {
+    @include gradient-primary;
+    padding: $space-4xl 0;
+    text-align: center;
+    color: white;
+
+    .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+
+        h2 {
+            color: white;
+            margin-bottom: $space-md;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: $space-xl;
+            font-size: 1.125rem;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: $space-sm;
+            padding: $space-md $space-2xl;
+            background: white;
+            color: $primary;
+            border-radius: $radius-lg;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all $transition-base;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                color: $primary-dark;
+            }
+        }
+    }
+}
+
+// ============================================
+// FOOTER
+// ============================================
+
+.footer {
+    background: $neutral-900;
+    color: $neutral-300;
+    padding: $space-3xl 0 $space-xl;
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: $space-3xl;
+        margin-bottom: $space-3xl;
+
+        @include respond(tablet) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .footer-brand {
+        .footer-logo {
+            font-family: $font-display;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: $space-md;
+        }
+
+        p {
+            color: $neutral-400;
+        }
+    }
+
+    .footer-links {
+        h4 {
+            color: white;
+            font-family: $font-body;
+            font-size: 1rem;
+            margin-bottom: $space-md;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-bottom: $space-sm;
+
+                a {
+                    color: $neutral-400;
+                    transition: color $transition-fast;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        padding-top: $space-xl;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: $neutral-500;
+        font-size: 0.875rem;
+    }
+}
